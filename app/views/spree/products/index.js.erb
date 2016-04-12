@@ -1,0 +1,6 @@
+$("#home-products").append("<%= j render 'spree/shared/products.js.erb' %>");
+<% if @products.next %>
+   $('.pagination').replaceWith('<%= j paginate(@products) %>');
+<% else %>
+   $('.pagination').remove();
+<% end %>

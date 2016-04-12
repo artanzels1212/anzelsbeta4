@@ -1,0 +1,159 @@
+
+
+ <ul class="hide" data-hook>
+      <li id="link-to-cart" data-hook>
+        <noscript>
+          <%= link_to Spree.t(:cart), '/cart' %>
+        </noscript>
+        &nbsp;
+      </li>
+      <script>Spree.fetch_cart()</script>
+    </ul>
+
+          <!--darbaar code-->
+<%nomy=Spree::Taxonomy%>
+<div id = "hojastick" class="container nav-wrapper" data-clone="sticky">
+                <div  class="row">
+                    <div class="col-sm-12">
+                        <a href="#" class="header-search-btn visible-xs" title="Search"></a>
+                        <nav id="main-nav" role="navigation">
+                            <div id="responsive-nav">
+                                <a id="responsive-btn" href="#">
+                                    <span class="responsive-btn-icon">
+                                        <span class="responsive-btn-block"></span>
+                                        <span class="responsive-btn-block"></span>
+                                        <span class="responsive-btn-block last"></span>
+                                    </span>
+                                    <span class="responsive-btn-text">Menu</span>
+                                </a><!-- responsive-nav-button -->
+                                <div id="responsive-menu-container">
+                                    
+                                </div><!-- End #responsive-menu-container -->
+                            </div><!-- End .responsive-nav -->
+                            
+                            <ul class="menu clearfix" id="putu">
+                                <li id="firstmenu"><a id="a1" href="<%=spree.root_path%>">Home</a>
+                                  
+                                </li>
+                                
+                                <li class="megamenu-container"><a id= "a2" href="/products">GALLERY</a>
+                                    <div class="megamenu">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <a href="/t/<%=nomy.find(7).name.downcase.gsub(' ','-')%>" class="megamenu-title">PAINTINGS</a>
+                                                    <ul>
+                                                        <%nomy.find(7).taxons.take(5).each do |taxon|%>
+                                                        <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        <%end%>
+                                                        <li><a href="/anzels/index">All Themes</a></li>
+                                                    </ul>
+                                                </div><!-- End .col-md-2 -->
+                                                <div class="col-md-2">
+                                                    <a href="/t/<%=nomy.find(3).name.downcase.gsub(' ','-')%>" class="megamenu-title"><%=nomy.find(3).name.upcase%></a>
+                                                    <ul>
+                                                        <%nomy.find(3).taxons.take(6).each do |taxon|%>
+                                                        
+                                                        <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        
+                                                        <%end%>
+                                                        
+                                                    </ul>
+                                                </div><!-- End .col-md-2 -->
+                                                <div class="col-md-2">
+                                                    <a href="/t/<%=nomy.find(5).name.downcase.gsub(' ','-')%>" class="megamenu-title">Mediums</a>
+                                                    <ul>
+                                                        <%nomy.find(5).taxons.take(5).each do |taxon|%>
+                                                        
+                                                        <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        
+                                                        <%end%>
+                                                        <li><a href="/anzels/medium">All Mediums</a></li>
+                                                      
+                                                    </ul>
+                                                </div><!-- End .col-md-2 -->
+                                                <div class="col-md-2">
+                                                    <a href="/t/<%=nomy.find(9).name.downcase.gsub(' ','-')%>" class="megamenu-title">Elements</a>
+                                                    <ul>
+                                                        <%nomy.find(9).taxons.all.each do |taxon|%>
+                                                        
+                                                        <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        
+                                                        <%end%>
+                                                    </ul>
+                                                </div><!-- End .col-md-2 -->
+                                                <%k = Spree::MenuBanner.last%>
+                                                <%ss="color:#ffffff;text-shadow:-1px -1px 0 #726c61,1px -1px 0 #726c61,-1px 1px 0 #726c61,1px 1px 0 #726c61;"%>
+                                                <div class="col-md-4 menu-banner">
+                                                    <a href="/t/<%=k.url%>" class="banner text-left">
+                                                        <img src="<%=k.img(:medium)%>" alt="<%=k.h2%>">
+                                                        <div class="banner-container text-center text-uppercase">
+                                                            <h5 style="<%=ss%>"><%=k.h1%></h5>
+                                                            <h4 style="<%=ss%>"><%=k.h2%></h4>
+                                                            <h5 style="<%=ss%>"><%=k.p%></h5>
+                                                        </div><!-- End .banner-container -->
+                                                    </a><!-- End .banner -->
+                                                </div><!-- End .col-md-4 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .container -->
+                                    </div><!-- End.megamenu -->
+                                </li>
+                                <li><a id="a3" href="/t/<%=nomy.find(2).name.downcase.gsub(' ','-')%>"><%=nomy.find(2).name%></a>
+                                    <ul>
+                                        <%nomy.find(2).taxons.take(6).each do |taxon|%>
+                                                        
+                                            <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        
+                                        <%end%>
+                                        <li><a href="/anzels/allartists">All Artists</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="/t/<%=nomy.find(8).name.downcase.gsub(' ','-')%>"><%=nomy.find(8).name%></a>
+                                    <ul>
+                                        <%nomy.find(8).taxons.all.each do |taxon|%>
+                                                        
+                                            <li><a href="/t/<%=taxon.permalink%>"><%=taxon.name%></a></li>
+                                                        
+                                        <%end%>
+                                        
+                                    </ul>
+                                </li>
+
+                                <li><a  id="a5" href="/t/<%=nomy.find(4).name.downcase.gsub(' ','-')%>"><%=nomy.find(4).name%></li>
+                                
+                                
+                               
+                                
+                            <div class="cart-dropdown dropdown pull-right" style="margin-top:6px;margin-right:6px;">
+
+                                <a id="a6" title="Shopping Cart" class="dropdown-toggle" data-toggle="dropdown"><span class="dropdown-icon"></span><span class="badge visible-xs">2</span><span class="hidden-xs">Cart <%=javascript_tag do%>
+              $('.amount').val();
+            <%end%></span></a>
+
+                                    <div class="dropdown-menu" style="width:102px;">
+                                        <p class="cart-desc">Total of your cart <%=javascript_tag do%>
+              $('.amount').val();
+            <%end%></p> 
+                                        <a href="/cart" style="text-align:center;"><span class="dropdown-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CART</span> </a>                                   
+                                    </div>
+
+
+                            </div><!-- End .cart-dropdown -->
+                                  
+
+
+
+                            </ul>
+                        </nav><!-- End #main-nav -->   
+                    </div><!-- End .col-sm-12 -->
+                </div><!-- End .row -->
+</div><!-- End .container -->
+
+            <!--copied till here 3-->
+
+
+<%=javascript_tag do%>
+        
+     $("#putu li").hover(function(){ $(this).toggleClass('active'); });
+<%end%>

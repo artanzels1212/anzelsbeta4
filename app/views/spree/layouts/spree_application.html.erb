@@ -1,0 +1,106 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
+  <head data-hook="inside_head">
+    <%= render partial: 'spree/shared/head' %>
+
+    
+  </head>
+  <body id="<%= @body_id || 'default' %>" data-hook="body">
+  <%if current_page?(spree.root_path)%>
+      <div id="phlash" style="position:absolute;height:60px;width:320px;left:50%;top:40%;transform:translate(-50%,-80%);background-color:rgba(89,176,196,0.8);z-index:1000;color:#fff;display:none;"><%= flash_messages %></div>
+  <%else%>
+  <%end%>
+    <div id="wrapper">
+
+        <%= render partial: 'spree/shared/google_analytics.js' %>
+        <!-- <div id="sticky-header" class="header4 light boxed-menu" data-fixed="fixed"></div> -->
+        
+        <header id="header" class="header4 boxed-menu light" data-hook>
+            <%=render 'spree/shared/custom/header_top'%>  
+      
+            <%= render partial: 'spree/shared/header' %>
+        </header><!-- End #header -->   
+
+
+
+        <%if current_page?(spree.root_path)%>
+          <%= yield %>      
+
+        <%else%>  
+          <div class="container">
+            <div class="row" data-hook>
+              <%= breadcrumbs(@taxon) %>
+
+              <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
+
+              <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9" %>" data-hook>
+                <%= flash_messages %>
+                <%= yield %>
+              </div>
+
+              <%= yield :templates %>
+            </div>
+          </div>
+        <%end%>  
+
+
+
+        <%=render 'spree/shared/custom/footer/footer'%>
+  </div><!-- End #wrapper -->
+  <!-- END -->
+
+    <!-- scroltop -->
+    <a href="#header" id="scroll-top" class="color2" title="Go to top">Top</a>
+
+    <!-- Google map javascript api v3 -->
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    
+    
+    <%if flash_messages %>    
+      <%=javascript_tag do%>
+          $('#phlash').css({"display":"inline"});
+          setTimeout(function(){
+              $('#phlash').css({"display":"none"});
+          }, 2000); 
+      <%end%>  
+    <%else%>
+      <%=javascript_tag do%>
+
+      <%end%>  
+    <%end%>
+
+    <%=render 'spree/shared/custom/footer/light'%>
+
+    <!--hojastick-->
+      <%=javascript_tag do%>
+        $(window).scroll(function() {
+        if ($(this).scrollTop() > 149){  
+          $('#hojastick').addClass("sticky");
+          $('#main-nav').addClass("bdr");
+          $('#a1').addClass("abdr");$('#a5').addClass("abdrlast");$('#a6').addClass("abdrcart");
+
+        }
+        else{
+          $('#hojastick').removeClass("sticky");
+          $('#main-nav').removeClass("bdr");
+          $('#a1').removeClass("abdr");$('#a5').removeClass("abdrlast");$('#a6').removeClass("abdrcart");
+        }
+      });
+      <%end%>
+<%=javascript_tag do%>
+
+$('#firstmenu').hover(function() {
+  $('#firstmenu').stop(true).addClass("active");
+}, function() {
+  $('#firstmenu').stop(true).removeClass("active");
+});
+ 
+<%end%>
+<%=render 'spree/shared/custom/mainjs'%>
+  </body>
+</html>
